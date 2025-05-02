@@ -1,0 +1,392 @@
+﻿@{
+	ViewData["Title"] = "Home";
+	ViewData["HideFooter"] = true;
+}
+<div class="carousel">
+	<div class="list">
+		<div class="item active">
+			<img src="/Images/home/carrossel1.jpg" />
+			<div class="content">
+				<div class="author">TERRATECH</div>
+				<div class="title">O FUTURO DO JARDIM</div>
+				<div class="topic">NA PALMA DA SUA MÃO</div>
+				<div class="des">
+					Nunca mais esqueça de regar suas plantas.
+				</div>
+				<div class="buttons">
+					<button onclick="window.location.href='/Product'">VEJA MAIS</button>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<img src="/Images/home/carrossel2.jpg" />
+			<div class="content">
+				<div class="author">TERRATECH</div>
+				<div class="title">SEU JARDIM, SUA VIDA</div>
+				<div class="topic">CUIDADOS QUE FLORESCEM</div>
+				<div class="des">
+					Descubra como cuidados simples podem moldam seu jardim em um verdadeiro paraíso.
+				</div>
+				<div class="buttons">
+					<button onclick="window.location.href='/Product/Learn'">VEJA MAIS</button>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<img src="/Images/home/carrossel3.png" />
+			<div class="content">
+				<div class="author">LUNDEV</div>
+				<div class="title">DESIGN SLIDER</div>
+				<div class="topic">ANIMAL</div>
+				<div class="des">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit...
+				</div>
+				<div class="buttons">
+					<button>SEE MORE</button>
+					<button>SUBSCRIBE</button>
+				</div>
+			</div>
+		</div>
+		<div class="item">
+			<img src="/Images/home/carrossel4.jpg" />
+			<div class="content">
+				<div class="author">TERRATECH</div>
+				<div class="title">RAÍZES DE INOVAÇÃO</div>
+				<div class="topic">UM POUCO SOBRE NÓS</div>
+				<div class="des">
+					Conheça a equipe por trás das soluções que estão transformando o futuro dos jardins.
+				</div>
+				<div class="buttons">
+					<button onclick="window.location.href='/Home/About'">VEJA MAIS</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="thumbnail">
+		<div class="item">
+			<img src="/Images/home/carrossel1.jpg" style="object-position: -115px 0;" />
+			<div class="content">
+				<div class="title">Produtos</div>
+				<div class="description">Evolua</div>
+			</div>
+		</div>
+		<div class="item">
+			<img src="/Images/home/carrossel2.jpg" style="object-position: -65px 0;" />
+			<div class="content">
+				<div class="title">Dicas</div>
+				<div class="description">Dedicação</div>
+			</div>
+		</div>
+		<div class="item">
+			<img src="/Images/home/carrossel3.png" />
+			<div class="content">
+				<div class="title">Name Slider</div>
+				<div class="description">Description</div>
+			</div>
+		</div>
+		<div class="item">
+			<img src="/Images/home/carrossel4.jpg" style="object-position: -35px 0;" />
+			<div class="content">
+				<div class="title">Equipe</div>
+				<div class="description">Sobre nós.</div>
+			</div>
+		</div>
+	</div>
+	<div class="time"></div>
+</div>
+
+<style>
+	* {
+		margin: 0 !important;
+		padding: 0 !important;
+		box-sizing: border-box;
+	}
+
+	body {
+		overflow: hidden;
+	}
+
+	
+	.carousel {
+		height: 100vh;
+		width: 100vw;
+		overflow: hidden; 
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center; 
+	}
+
+		.carousel .list .item {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			transition: all 0.8s ease;
+			display: flex;
+			justify-content: center;
+			align-items: center; 
+		}
+
+			.carousel .list .item img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: center;
+			}
+
+			.carousel .list .item .content {
+				position: absolute;
+				top: 20%;
+				width: 1140px;
+				max-width: 100%;
+				left: 50%;
+				transform: translate(-50%, 50px);
+				box-sizing: border-box;
+				color: #fff;
+				text-shadow: 0 5px 10px #0004;
+				opacity: 0;
+				transform: translateY(10px);
+				transition: opacity 1s ease, transform 1s ease;
+			}
+
+			.carousel .list .item .des {
+				font-size: 28px;
+			}
+
+			.carousel .list .item.active {
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+				.carousel .list .item.active .content {
+					opacity: 1;
+					transform: translate(-50%, 0);
+				}
+
+			.carousel .list .item .author,
+			.carousel .list .item .title,
+			.carousel .list .item .topic,
+			.carousel .list .item .des,
+			.carousel .list .item .buttons {
+				opacity: 0;
+				transform: translateY(50px);
+				transition: opacity 0.8s ease, transform 0.8s ease;
+			}
+
+			.carousel .list .item.active .author {
+				opacity: 1;
+				transform: translateY(0);
+				transition-delay: 0.5s;
+			}
+
+			.carousel .list .item.active .title {
+				opacity: 1;
+				transform: translateY(0);
+				transition-delay: 0.7s;
+			}
+
+			.carousel .list .item.active .topic {
+				opacity: 1;
+				transform: translateY(0);
+				transition-delay: 0.9s;
+			}
+
+
+			.carousel .list .item.active .des {
+				opacity: 1;
+				transform: translateY(0);
+				transition-delay: 1.1s;
+			}
+
+			.carousel .list .item.active .buttons {
+				opacity: 1;
+				transform: translateY(0);
+				transition-delay: 1.3s;
+			}
+
+			.carousel .list .item .author {
+				font-weight: bold;
+				letter-spacing: 10px;
+			}
+
+			.carousel .list .item .title,
+			.carousel .list .item .topic {
+				font-size: 5em;
+				font-weight: bold;
+				line-height: 1.3em;
+			}
+
+			.carousel .list .item .topic {
+				color: #f1683a;
+			}
+
+			.carousel .list .item .buttons {
+				display: grid;
+				grid-template-columns: repeat(2, 130px);
+				grid-template-rows: 40px;
+				gap: 5px;
+				margin-top: 20px;
+			}
+
+				.carousel .list .item .buttons button {
+					border: none;
+					background-color: #eee;
+					letter-spacing: 3px;
+					font-family: Poppins;
+					font-weight: 500;
+				}
+
+					.carousel .list .item .buttons button:hover {
+						transform: scale(1.05);
+						z-index: 101;
+						box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+						cursor: pointer;
+						transition: transform 0.3s ease;
+					}
+
+					.carousel .list .item .buttons button:nth-child(2) {
+						background-color: rgba(0, 0, 0, 0.5);
+						border: 1px solid #fff;
+						color: #eee;
+					}
+
+	.thumbnail {
+		position: absolute;
+		bottom: 30px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		gap: 15px;
+		z-index: 100;
+	}
+
+		.thumbnail .item {
+			left: 320px;
+			width: 120px;
+			height: 190px;
+			border-radius: 80px;
+			flex-shrink: 0;
+			position: relative;
+			transition: transform 0.3s ease;
+		}
+
+			.thumbnail .item:hover {
+				transform: scale(1.05);
+				z-index: 101;
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+				cursor: pointer;
+			}
+
+			.thumbnail .item.selected {
+				transform: scale(1.2); 
+				z-index: 101;
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+				cursor: pointer;
+			}
+
+			.thumbnail .item img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 20px;
+			}
+
+			.thumbnail .item .content {
+				color: #fff;
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				right: 10px;
+			}
+
+				.thumbnail .item .content .title {
+					font-weight: 500;
+				}
+
+				.thumbnail .item .content .description {
+					font-weight: 300;
+				}
+
+
+
+	.carousel .time {
+		position: absolute;
+		z-index: 1000;
+		width: 0%;
+		height: 3px;
+		left: 0;
+		top: 0;
+		
+	}
+</style>
+
+<script>
+	const carousel = document.querySelector('.carousel');
+	const list = carousel.querySelector('.list');
+	const thumbnail = carousel.querySelector('.thumbnail');
+	const timeBar = carousel.querySelector('.time');
+
+	let currentIndex = 0;
+
+	// Atualiza o slide
+	function updateSlide() {
+	  const items = list.children;
+	  for (let i = 0; i < items.length; i++) {
+		items[i].style.zIndex = i === currentIndex ? 1 : 0;
+		if (i === currentIndex) {
+		  items[i].classList.add('active');
+		} else {
+		  items[i].classList.remove('active');
+		}
+	  }
+	  updateThumbnails();
+	}
+
+	// Muda o slide com direção (1 para frente, -1 para trás)
+	function changeSlide(direction) {
+	  const items = list.children;
+
+	  if (direction === 1 && currentIndex < items.length - 1) {
+		currentIndex++;
+	  } else if (direction === -1 && currentIndex > 0) {
+		currentIndex--;
+	  }
+
+	  updateSlide();
+	}
+
+	// Atualiza as miniaturas (thumbnails) com base no slide atual
+	function updateThumbnails() {
+	  const items = thumbnail.children;
+	  for (let i = 0; i < items.length; i++) {
+		if (i === currentIndex) {
+		  items[i].classList.add('selected');
+		} else {
+		  items[i].classList.remove('selected'); 
+		}
+	  }
+	}
+
+
+	for (let i = 0; i < thumbnail.children.length; i++) {
+	  thumbnail.children[i].addEventListener('click', () => {
+		currentIndex = i;
+		updateSlide();
+	  });
+	}
+
+	setInterval(() => {
+	  currentIndex++;
+	  if (currentIndex >= list.children.length) {
+		currentIndex = 0;
+	  }
+	  updateSlide();
+	}, 15000);
+
+
+	updateSlide();
+
+</script>

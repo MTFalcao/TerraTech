@@ -1,0 +1,102 @@
+﻿@{
+	var hideNavbar = ViewData["HideNavbar"] as bool? ?? false;
+	var hideFooter = ViewData["HideFooter"] as bool? ?? false;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] TerraTech</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-minty.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/WebSite.styles.css" asp-append-version="true" />
+</head>
+<body>
+	<header>
+		@if (!hideNavbar)
+		{
+			<div class="custom-navbar d-flex justify-content-between align-items-center p-3">
+				<img src="~/Images/Logo2.png" alt="Logo" style="height: 40px; padding-left:8px;" />
+				<div>
+					<a href="/" class="custom-nav-btn mx-2">Home</a>
+					<a href="/Sensor" class="custom-nav-btn mx-2">Sensores</a>
+					<a href="/Home/Login" class="custom-nav-btn mx-2">Login</a>
+				</div>
+			</div>
+		}
+	</header>
+
+	<div class="container @(hideNavbar ? "p-0" : "")">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+
+	@if (!hideFooter)
+	{
+		<footer class="custom-footer border-top footer text-muted">
+			<div class="container">
+				&copy; 2025 - WebSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+			</div>
+		</footer>
+	}
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+
+	<style>
+
+
+		.custom-navbar {
+			background-color: rgba(0, 0, 0, 0.5); /* preto semi-transparente */
+			backdrop-filter: blur(4px); /* efeito glass */
+			width: 100vw;
+			padding: 1rem 2rem;
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1050;
+			display: flex;
+			justify-content: flex-end;
+		}
+
+		.custom-nav-btn {
+			position: relative;
+			color: white !important;
+			text-decoration: none;
+			padding: 8px 20px !important;
+			margin: 0 10px !important;
+			font-weight: 500 !important;
+			transition: color 0.3s ease;
+		}
+
+			.custom-nav-btn::after {
+				content: '';
+				position: absolute;
+				border-radius: 8px;
+				bottom: 0;
+				left: 0;
+				width: 0%;
+				height: 3px;
+				background-color: #FFD700;
+				transition: width 0.3s ease;
+			}
+
+			.custom-nav-btn:hover::after,
+			.custom-nav-btn.active::after {
+				width: 100%;
+			}
+
+			.custom-nav-btn:hover {
+				color: #FFD700;
+			}
+
+		.custom-footer{
+			color: white !important;
+		}
+	</style>
+</body>
+</html>

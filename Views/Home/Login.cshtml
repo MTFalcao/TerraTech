@@ -1,0 +1,89 @@
+﻿@model WebSite.Models.LoginModel
+
+<div class="login-container d-flex justify-content-center align-items-center">
+    <div class="login-card p-4">
+        <div class="text-center mb-4">
+            <h2 class="text-light"><i class="fas fa-sign-in-alt"></i> Login</h2>
+            <p class="text-light">Acesse sua conta para continuar</p>
+        </div>
+        <form asp-action="Login" method="post">
+            <div class="form-group mb-3">
+                <label asp-for="Email" class="form-label text-light">Email</label>
+                <input asp-for="Email" class="form-control custom-input" placeholder="Digite seu e-mail" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Password" class="form-label text-light">Senha</label>
+                <input asp-for="Password" type="password" class="form-control custom-input" placeholder="Digite sua senha" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-success w-100 py-2 glow-btn">Entrar</button>
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <small class="text-light">Não tem conta? <a href="/Home/RegisterUser" class="text-warning fw-bold">Cadastre-se</a></small>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-image: url(/Images/login/login.jpg);
+        padding-top: 80px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        image-rendering: auto;
+    }
+
+    .login-container {
+        padding-top:80px;
+    }
+
+    .login-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(12px);
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 450px;
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .custom-input {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #78ff84;
+        color: white;
+    }
+
+        .custom-input::placeholder {
+            color: white;
+        }
+
+        .custom-input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #b4ffba;
+            box-shadow: 0 0 8px #78ff84;
+            color: white;
+        }
+
+    .glow-btn {
+        background-color: #78ff84;
+        color: #1e1e1e;
+        font-weight: bold;
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 10px #78ff84a8;
+    }
+
+        .glow-btn:hover {
+            background-color: #b4ffba;
+            box-shadow: 0 0 20px #b4ffba;
+            transform: scale(1.03);
+        }
+
+
+</style>
