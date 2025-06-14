@@ -28,22 +28,7 @@
 					Descubra como cuidados simples podem moldam seu jardim em um verdadeiro paraíso.
 				</div>
 				<div class="buttons">
-					<button onclick="window.location.href='/Product/Learn'">VEJA MAIS</button>
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="/Images/home/carrossel3.png" />
-			<div class="content">
-				<div class="author">LUNDEV</div>
-				<div class="title">DESIGN SLIDER</div>
-				<div class="topic">ANIMAL</div>
-				<div class="des">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit...
-				</div>
-				<div class="buttons">
-					<button>SEE MORE</button>
-					<button>SUBSCRIBE</button>
+					<button onclick="window.location.href='/Product/Tips'">VEJA MAIS</button>
 				</div>
 			</div>
 		</div>
@@ -64,28 +49,21 @@
 	</div>
 	<div class="thumbnail">
 		<div class="item">
-			<img src="/Images/home/carrossel1.jpg" style="object-position: -115px 0;" />
+			<img src="/Images/home/carrossel1.jpg" />
 			<div class="content">
 				<div class="title">Produtos</div>
 				<div class="description">Evolua</div>
 			</div>
 		</div>
 		<div class="item">
-			<img src="/Images/home/carrossel2.jpg" style="object-position: -65px 0;" />
+			<img src="/Images/home/carrossel2.jpg" style="object-position: 40% 50%;" />
 			<div class="content">
 				<div class="title">Dicas</div>
 				<div class="description">Dedicação</div>
 			</div>
 		</div>
 		<div class="item">
-			<img src="/Images/home/carrossel3.png" />
-			<div class="content">
-				<div class="title">Name Slider</div>
-				<div class="description">Description</div>
-			</div>
-		</div>
-		<div class="item">
-			<img src="/Images/home/carrossel4.jpg" style="object-position: -35px 0;" />
+			<img src="/Images/home/carrossel4.jpg" style="object-position: 20% 50%" />
 			<div class="content">
 				<div class="title">Equipe</div>
 				<div class="description">Sobre nós.</div>
@@ -261,10 +239,14 @@
 		display: flex;
 		gap: 15px;
 		z-index: 100;
+		justify-content: flex-end;
+		width: 100%; 
+		max-width: 1100px;
+		padding-right: 20px; 
 	}
 
+
 		.thumbnail .item {
-			left: 320px;
 			width: 120px;
 			height: 190px;
 			border-radius: 80px;
@@ -321,7 +303,78 @@
 		top: 0;
 		
 	}
+
+
+
+	@@media (max-width: 768px) {
+		.carousel .list .item .content
+
+	{
+		width: 90%;
+		top: 15%;
+		bottom:25%;
+		transform: translate(-50%, 0);
+		text-align: center;
+	}
+
+	.carousel .list .item .title,
+	.carousel .list .item .topic {
+		font-size: 2em;
+	}
+
+	.carousel .list .item .des {
+		font-size: 1em;
+		padding: 0 10px;
+	}
+
+	.carousel .list .item .buttons {
+		grid-template-columns: 1fr;
+		grid-template-rows: 40px 40px;
+		width: 100%;
+		justify-items: center;
+	}
+
+		.carousel .list .item .buttons button {
+			width: 80%;
+			font-size: 1em;
+		}
+
+		.thumbnail {
+			position: static; 
+			gap: 10px;
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100%;
+			transform: none;
+			margin-top:50px !important;
+		}
+
+			.thumbnail .item {
+				width: 80px;
+				height: 110px;
+				border-radius: 12px;
+			}
+
+				.thumbnail .item img {
+
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					border-radius: 20px;
+				}
+
+				.thumbnail .item .content .title {
+					font-size: 0.9em;
+				}
+
+				.thumbnail .item .content .description {
+					font-size: 0.8em;
+				}
+	}
 </style>
+
+
+
 
 <script>
 	const carousel = document.querySelector('.carousel');

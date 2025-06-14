@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using static System.Collections.Specialized.BitVector32;
+using static WebSite.Models.HintPageModel;
+using WebSite.Models;
 
 namespace WebSite.Controllers
 {
@@ -8,9 +11,10 @@ namespace WebSite.Controllers
         {
             return View();
         }
-        public IActionResult Learn()
+        public IActionResult Tips()
         {
-            return View();
+            var model = new HintPageModel();
+            return View(model);
         }
     }
 }

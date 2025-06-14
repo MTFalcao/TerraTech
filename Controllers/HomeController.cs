@@ -16,7 +16,7 @@ namespace WebSite.Controllers
         {
             _logger = logger;
             //Instanciando a chave API, FirebaseAuthProvider é a instancia de autenticação do Firebase Authentication.
-            _firebaseAuth = new FirebaseAuthProvider(new FirebaseConfig("\r\nAIzaSyD26u7lIJNdK_7KlfzDdftbINE-eqm4b9M"));
+            _firebaseAuth = new FirebaseAuthProvider(new FirebaseConfig("\r\nAIzaSyCy6n83uE5SLIPEI5kU4W6joqk0Bc_Chx0"));
         }
 
         public IActionResult Index()

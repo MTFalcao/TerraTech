@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-minty.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/WebSite.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 	<header>
@@ -27,7 +29,7 @@
 		}
 	</header>
 
-	<div class="container @(hideNavbar ? "p-0" : "")">
+	<div class="container flex-grow-1 @(hideNavbar ? "p-0" : "")">
 		<main role="main" class="pb-3">
 			@RenderBody()
 		</main>
@@ -35,11 +37,62 @@
 
 	@if (!hideFooter)
 	{
-		<footer class="custom-footer border-top footer text-muted">
+		<footer class="bg-dark text-light pt-5 pb-3">
 			<div class="container">
-				&copy; 2025 - WebSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+				<div class="row text-center text-md-start">
+					<!-- Marca e redes -->
+					<div class="col-md-3 mb-4">
+						<h5 class="fw-bold text-success"><i class="fas fa-leaf me-2"></i>TERRATECH</h5>
+						<p>O futuro do jardim na palma da sua mão. Nunca mais esqueça de regar suas plantas.</p>
+						<div class="d-flex justify-content-center justify-content-md-start gap-3">
+							<a href="#" class="text-light"><i class="fab fa-instagram fa-lg"></i></a>
+							<a href="#" class="text-light"><i class="fab fa-facebook fa-lg"></i></a>
+							<a href="#" class="text-light"><i class="fab fa-twitter fa-lg"></i></a>
+						</div>
+					</div>
+
+					<!-- Links rápidos -->
+					<div class="col-md-3 mb-4">
+						<h6 class="fw-bold" style="color:white">Links Rápidos</h6>
+						<ul class="list-unstyled">
+							<li><a href="/" class="text-light text-decoration-none">Início</a></li>
+							<li><a href="/Sensor" class="text-light text-decoration-none">Sensores</a></li>
+							<li><a href="/Product/Index" class="text-light text-decoration-none">Produtos</a></li>
+							<li><a href="/Product/Tips" class="text-light text-decoration-none">Dicas</a></li>
+							<li><a href="/Home/About" class="text-light text-decoration-none">Equipe</a></li>
+							
+						</ul>
+					</div>
+
+					<!-- Contato -->
+					<div class="col-md-3 mb-4">
+						<h6 class="fw-bold" style="color:white">Contato</h6>
+						<ul class="list-unstyled">
+							<li><i class="fas fa-phone-alt me-2"></i> (xx) xxxx-xxxx</li>
+							<li><i class="fas fa-envelope me-2"></i> contato@terratech.com</li>
+							<li><i class="fas fa-map-marker-alt me-2"></i> XXX</li>
+
+						</ul>
+					</div>
+
+					<!-- Novidades -->
+					<div class="col-md-3 mb-4">
+						<h6 class="fw-bold" style="color:white">Novidades</h6>
+						<p>Receba nossas dicas de jardinagem e novidades.</p>
+						<form>
+							<div class="mb-2">
+								<input type="email" class="form-control bg-success bg-opacity-25 text-light border-0" placeholder="Seu email" />
+							</div>
+							<button type="submit" class="btn btn-success w-100">Assinar</button>
+						</form>
+					</div>
+				</div>
+
+				<hr class="border-success border-opacity-25 mt-4" />
+				<p class="text-center m-0">&copy; 2025 TerraTech. Todos os direitos reservados.</p>
 			</div>
 		</footer>
+
 	}
 
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -48,7 +101,22 @@
 	@await RenderSectionAsync("Scripts", required: false)
 
 	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+		}
 
+			body > .container {
+				flex: 1;
+			}
+
+		footer {
+			flex-shrink: 0;
+			margin-top: 0 !important;
+			padding-top: 0 !important;
+		}
 
 		.custom-navbar {
 			background-color: rgba(0, 0, 0, 0.5); /* preto semi-transparente */
@@ -81,7 +149,7 @@
 				left: 0;
 				width: 0%;
 				height: 3px;
-				background-color: #FFD700;
+				background-color: #e3af27;
 				transition: width 0.3s ease;
 			}
 
@@ -97,6 +165,8 @@
 		.custom-footer{
 			color: white !important;
 		}
+
+
 	</style>
 </body>
 </html>

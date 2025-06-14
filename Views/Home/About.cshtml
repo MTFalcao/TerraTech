@@ -28,19 +28,25 @@
 	</div>
 </div>
 
-
 <!-- About Start -->
 <div class="container-xxl py-5">
 	<div class="container">
 		<div class="row g-5 align-items-end">
 			<div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.3s">
-				<img class="img-fluid rounded" data-wow-delay="0.1s" src="~/Images/about.jpg">
+				<img class="img-fluid rounded" data-wow-delay="0.1s" src="~/Images/about/page/about-2.jpeg">
 			</div>
 			<div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
 				<h1 class="display-1 mb-0" style="font-weight:500">60</h1>
 				<p class="text-primary mb-4">Anos de Experiência</p>
 				<h1 class="display-5 mb-4">Seu jardim, nosso lar</h1>
-				<p class="mb-4">Com décadas de dedicação, oferecemos cuidado e beleza para seu espaço. Transformamos cada ambiente em um refúgio verde, proporcionando harmonia e frescor. Confie em nossa experiência para criar o jardim dos seus sonhos.</p>
+				<p class="mb-4">
+					Somos um grupo de alunos da Faculdade Estácio, unidos pelo interesse em desenvolver soluções tecnológicas 
+					inovadoras que impactem positivamente o cotidiano das pessoas. 
+					<p>Este projeto nasceu com o objetivo de criar 
+					uma solução inteligente para o monitoramento de plantas e controle de irrigação, utilizando sensores 
+					de umidade para garantir o cuidado ideal das plantas, de forma prática e eficiente.
+					</p>
+				</p>
 			</div>
 			<div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
 				<div class="row g-5">
@@ -55,7 +61,10 @@
 						<div class="border-start ps-4">
 							<i class="fa fa-users fa-3x text-primary mb-3"></i>
 							<h4 class="mb-3">Equipe Dedicada</h4>
-							<span>Contamos com uma equipe comprometida, pronta para oferecer suporte e garantir os melhores resultados no cuidado com suas plantas.</span>
+							<span>
+								Somos uma equipe qualificada que une tecnologia, engenharia e design para criar soluções inovadoras,
+								sustentáveis e funcionais, promovendo o uso consciente da tecnologia.
+							</span>
 						</div>
 					</div>
 				</div>
@@ -184,7 +193,7 @@
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
 								<div class="sponsor-logo">
-									<img src="/Images/About/partners/bomDemais.jpeg" alt="Patrocinador 2" />
+									<img src="/Images/About/partners/estacio.jpg" alt="Patrocinador 2" />
 								</div>
 							</div>
 							<div class="col-6 col-sm-4 col-md-3 col-lg-2">
@@ -265,7 +274,11 @@
 	}
 
 	.page-header {
-		background-image: url('/Images/backAbout.jpg');
+		position:relative;
+		color:white;
+		overflow:hidden;
+
+		background-image: url('/Images/about/page/background.jpg');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -277,6 +290,17 @@
 		margin-left: calc(-50vw + 50%); 
 	}
 
+		.page-header::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 150px; /* ajuste conforme a suavidade que você quer */
+			background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+			pointer-events: none;
+		}
+
 		.page-header .breadcrumb-item,
 		.page-header .breadcrumb-item a {
 			font-size: 18px;
@@ -285,7 +309,7 @@
 
 	/*** Facts & Quote ***/
 	.facts {
-		background-image: url("/Images/backAbout.jpg");
+		background-image: url('/Images/about/page/background.jpg');
 		background-size: cover;
 		background-position: center;
 		background-attachment: fixed; 
@@ -400,6 +424,15 @@
 	.carousel-control-prev,
 	.carousel-control-next {
 		display: none;
+	}
+
+	@@media (max-width: 768px) {
+		.wow {
+			visibility: visible !important;
+			animation: none !important;
+			opacity: 1 !important;
+			transform: none !important;
+		}
 	}
 
 </style>

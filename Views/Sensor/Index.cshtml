@@ -84,7 +84,7 @@
 							</div>
 						</div>
 						<div class="temperature-label">
-							<span>25°C</span>
+							<span>29°C</span>
 							<small>Temperatura</small>
 						</div>
 					</div>
@@ -195,6 +195,12 @@
 			background-color: #3c7c45;
 			transform: scale(1.05);
 		}
+
+	.btn-water-active {
+		background-color: #e9332b !important;
+		color: white;
+	}
+
 
 	.thermometer-container {
 		position: relative;
@@ -308,62 +314,114 @@
 
 <!-- Firebase Script -->
 <script type="module">
-	import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-	import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+	import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 
 	const firebaseConfig = {
-		apiKey: "AIzaSyD26u7lIJNdK_7KlfzDdftbINE-eqm4b9M",
-		authDomain: "wsplant-59c38.firebaseapp.com",
-		databaseURL: "https://wsplant-59c38-default-rtdb.firebaseio.com",
-		projectId: "wsplant-59c38",
-		storageBucket: "wsplant-59c38.appspot.com",
-		messagingSenderId: "237024281074",
-		appId: "1:237024281074:web:4c56c76f6108398012eb6b",
-		measurementId: "G-L9PXPZJDQL"
+	  apiKey: "AIzaSyCy6n83uE5SLIPEI5kU4W6joqk0Bc_Chx0",
+	  authDomain: "terratech-7eb2b.firebaseapp.com",
+	  databaseURL: "https://terratech-7eb2b-default-rtdb.firebaseio.com",
+	  projectId: "terratech-7eb2b",
+	  storageBucket: "terratech-7eb2b.firebasestorage.app",
+	  messagingSenderId: "830014655189",
+	  appId: "1:830014655189:web:54df2dc43d927a10ecf05c",
+	  measurementId: "G-QTG2YVH552"
 	};
 
 	const app = initializeApp(firebaseConfig);
 	const db = getDatabase(app);
 
+	// Referências do banco
 	const humidityRef = ref(db, 'sensor/umidade');
 	const temperatureRef = ref(db, 'sensor/temperatura');
+	const regarRef = ref(db, 'regar');
+	const bombaRef = ref(db, 'sensor/bomba');
 
+	// Atualiza valores de umidade
 	onValue(humidityRef, (snapshot) => {
-		const value = snapshot.val()?.valor ?? 0;
-		document.getElementById('humidityValue').innerText = `${value}%`;
-		updateProgress('humidityProgress', value);
+	  const value = snapshot.val()?.valor ?? 0;
+	  document.getElementById('humidityValue').innerText = `${value}%`;
+	  updateProgress('humidityProgress', value);
 	});
 
+	// Atualiza valores de temperatura
 	onValue(temperatureRef, (snapshot) => {
-		const value = snapshot.val()?.valor ?? 0;
-		document.getElementById('temperatureValue').innerText = `${value}°C`;
-		updateTemperatureLevel(value);
+	  const value = snapshot.val()?.valor ?? 0;
+	  document.getElementById('temperatureValue').innerText = `${value}°C`;
+	  updateTemperatureLevel(value);
 	});
 
+	// Atualiza status da bomba para habilitar/desabilitar botão
+	onValue(bombaRef, (snapshot) => {
+	  const ligada = snapshot.val() === true;
+	  botoesRegar.forEach(btn => {
+		btn.disabled = ligada;
+
+		if (ligada) {
+		  btn.classList.add('btn-water-active');
+		  btn.innerText = 'Regando';
+		} else {
+		  btn.classList.remove('btn-water-active');
+		  btn.innerText = 'Regar';
+		}
+	  });
+	});
+
+
+	// Função que ativa o comando regar no Firebase
+	function ativarRegar() {
+	  set(regarRef, true).catch(e => console.error("Erro ao enviar comando regar:", e));
+	}
+
+	// Configura eventos do botão regar
+	const botoesRegar = document.querySelectorAll('.btn-water');
+
+	botoesRegar.forEach(btn => {
+	  btn.addEventListener('click', () => {
+		ativarRegar();
+
+		// Desabilita botão para evitar cliques repetidos
+		btn.disabled = true;
+
+		// Reabilita botão após 7 segundos (tempo para bomba ligar + buffer)
+		setTimeout(() => {
+		  btn.disabled = false;
+		}, 7000);
+	  });
+	});
+
+	// Atualiza barra circular da umidade
 	function updateProgress(elementId, value) {
-		const progress = document.getElementById(elementId);
+	  const progress = document.getElementById(elementId);
+	  value = Math.max(0, Math.min(value, 100)); // Garante valor entre 0-100
 
-		let color = "#4b9856";
-		if (value <= 14) color = "#e9332b";
-		else if (value <= 34) color = "#ee642a";
-		else if (value <= 49) color = "#f4951d";
-		else if (value <= 64) color = "#bdc82c";
-		else if (value <= 74) color = "#7db23f";
+	  let color = "#4b9856"; // Default (muito úmido)
+	  if (value <= 14) color = "#e9332b";       // Muito seco
+	  else if (value <= 34) color = "#ee642a";  // Seco
+	  else if (value <= 49) color = "#f4951d";  // Moderado
+	  else if (value <= 64) color = "#bdc82c";  // Úmido
+	  else if (value <= 74) color = "#7db23f";  // Ideal
 
-		progress.style.background = `conic-gradient(${color} ${value * 3.6}deg, #e0e0e0 0deg)`;
-		progress.style.setProperty('--value', value);
-		progress.style.setProperty('--color', color);
+	  progress.style.background = `conic-gradient(${color} ${value * 3.6}deg, #e0e0e0 0deg)`;
+	  progress.style.setProperty('--value', value);
+	  progress.style.setProperty('--color', color);
 	}
 
+
+	// Atualiza nível do termômetro
 	function updateTemperatureLevel(value) {
-		const level = document.getElementById("temperatureLevel");
-		const maxHeight = 160;
-		const maxTemp = 100;
+	  const level = document.getElementById("temperatureLevel");
+	  const maxHeight = 160;
+	  const minTemp = 20;
+	  const maxTemp = 40;
 
-		let percent = Math.min(Math.max(value, 0), maxTemp) / maxTemp;
-		let emptyHeight = maxHeight * (1 - percent);
+	  // Garante que o valor fique dentro da faixa
+	  let clamped = Math.min(Math.max(value, minTemp), maxTemp);
+	  let percent = (clamped - minTemp) / (maxTemp - minTemp);
+	  let emptyHeight = maxHeight * (1 - percent);
 
-		level.style.height = `${emptyHeight}px`;
-		document.getElementById("temperatureValue").innerText = `${value}°C`;
+	  level.style.height = `${emptyHeight}px`;
+	  document.getElementById("temperatureValue").innerText = `${value.toFixed(1)}°C`;
 	}
+
 </script>

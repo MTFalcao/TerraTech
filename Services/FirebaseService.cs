@@ -13,7 +13,7 @@ namespace WebSite.Services
         // Inicializa o cliente Firebase apontando para a URL do Realtime Database.
         public FirebaseService()
         {
-            _firebaseClient = new FirebaseClient("https://wsplant-59c38-default-rtdb.firebaseio.com/");
+            _firebaseClient = new FirebaseClient("https://terratech-7eb2b-default-rtdb.firebaseio.com/");
         }
 
         // Método para obter os dados da umidade da planta
@@ -37,35 +37,6 @@ namespace WebSite.Services
                 .OnceSingleAsync<int>();
 
             return data;
-        }
-
-
-        public async Task SetUmidadeAsync()
-        {
-            // Cria uma instância de Random para gerar números aleatórios
-            Random random = new Random();
-
-            int umidade = random.Next(1, 101);
-
-            // Atualiza o valor no Firebase
-            await _firebaseClient
-                .Child("sensor")
-                .Child("umidade")
-                .PutAsync(new { valor = umidade });
-        }
-        public async Task SetTemperaturaAsync()
-        {
-            // Cria uma instância de Random para gerar números aleatórios
-            Random random = new Random();
-
-            int temperatura = random.Next(80, 80);
-
-            // Atualiza o valor no Firebase
-            await _firebaseClient
-                .Child("sensor")
-                .Child("temperatura")
-                .PutAsync(new { valor = temperatura });
-
         }
     }
 }
